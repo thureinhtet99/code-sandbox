@@ -1,12 +1,16 @@
 "use strict";
 const testButton = document.getElementById("text-btn");
-const throttle = (fn, interval = 2000) => {
+// - marks T as variable of throttle function
+// - extends function's params
+// - return function's params with typeof Parameters
+// - return callback fn
+const throttle = (fn, interval = 1000) => {
     let lastTime = 0;
-    return function (...args) {
+    return function (...params) {
         const current = Date.now();
         if (current - lastTime >= interval) {
             lastTime = current;
-            fn.apply(args);
+            fn.apply(this, params);
         }
     };
 };
